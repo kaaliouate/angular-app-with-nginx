@@ -1,19 +1,21 @@
 pipeline {
   agent any
   stages {
+    stage("install") {
+      steps {
+        echo 'npm install ...'
+        nodejs('NodeJS-15') {
+          sh 'npm install'
+        }
+      }
+    }
+    
     stage("build") {
       steps {
-        echo 'building the application...'
-      }
-    }
-    stage("test") {
-      steps {
-        echo 'testing the application...'
-      }
-    }
-    stage("deploy") {
-      steps {
-        echo 'deploying the application...'
+        echo 'npm build --prod ...'
+        nodejs('NodeJS-15') {
+          sh 'npm build --prod'
+        }
       }
     }
   }
