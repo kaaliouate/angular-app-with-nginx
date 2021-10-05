@@ -14,7 +14,7 @@ pipeline {
       steps {
         echo 'npm build --prod ...'
         nodejs('NodeJS-15') {
-          sh 'npm build --prod'
+          sh 'npm run build --prod'
         }
       }
     }
