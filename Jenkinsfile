@@ -13,10 +13,20 @@ pipeline {
     stage('Test') {
       parallel {
         stage('Static code analysis') {
-            steps { sh 'npm run lint' }
+          steps {
+            echo 'npm run lint ...'
+            nodejs('NodeJS-15') {
+              sh 'npm run lint'
+            }
+          }
         }
         stage('Unit tests') {
-            steps { sh 'npm run test' }
+          steps {
+            echo 'npm run test ...'
+            nodejs('NodeJS-15') {
+              sh 'npm run test'
+            }
+          }
         }
       }
     }
